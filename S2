@@ -40,6 +40,20 @@ empty_order();
 //next qn
 
 function add_to_order(x, y){
-    return stringify(x)+stringify(y);
+    return x*10+y;
 }
-add_to_order(3, 5);
+add_to_order(3, 5); 
+
+//next qn
+function last_combo(x){
+    return x%10;
+}
+last_combo(432);
+
+//next qn
+
+function other_combos(x){
+    return math_floor(x/10);
+}
+
+other_combos(432);
