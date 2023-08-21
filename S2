@@ -1,0 +1,45 @@
+// Type your program in here
+function biggie_size(x){
+    return x+4;
+}
+
+biggie_size(1);
+
+//next qn
+
+function unbiggie_size(x){
+    return x-4;
+}
+
+unbiggie_size(5);
+
+//next qn
+
+function isbiggie_size(x){
+    return x>4;
+}
+
+isbiggie_size(2);
+
+//next qn
+
+function combo_price(x){
+    return x>4 ? (x*1.17)+0.5:x*1.17;
+}
+
+combo_price(6);
+
+//next qn
+
+function empty_order(){
+    return 0;
+}
+
+empty_order();
+
+//next qn
+
+function add_to_order(x, y){
+    return stringify(x)+stringify(y);
+}
+add_to_order(3, 5);
