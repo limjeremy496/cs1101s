@@ -1,0 +1,20 @@
+// Type your program in here!
+// you may need helper functions
+function besiden(n, rune) {
+    // your solution goes here
+    return n === 1 ? random_color(rune)
+                   : beside_frac(1 / n, random_color(rune), 
+                    besiden(n - 1, random_color(rune)));
+}
+
+function randomly_colored_carpet(n, m, rune) {
+    // your solution goes here
+    return n === 1 ? besiden(m, rune)
+                    : stack_frac(1 / n, besiden(m, rune), 
+                    randomly_colored_carpet(n -1, m, random_color(rune)));
+}
+
+// Test
+show(randomly_colored_carpet(10, 10, heart));
+// show(randomly_colored_carpet(0, 0, heart));
+// should produce a carpet as shown in the title picture of this quest.
