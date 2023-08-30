@@ -3,6 +3,7 @@ import { circle, square, stack, stack_frac, beside_frac, beside, blank, ribbon, 
 function moony_1(rune){
     return beside(stack(circle, square), 
                   stack(blank, rune));
+            //stack(beside(), beside())
 }
 // show(moony_1(ribbon));
 
@@ -20,18 +21,25 @@ show(moony_2(circle, 5));
 /*function moony_2(rune, n){
     return n === 1
            ? rune
-           : moony_1(moony_2(rune, n - 1));
+           : moony_1(moony_2(rune, n - 1)); 
+           //moony1 returns to the bottom left rune(ribbon in moony1), 
+           //so its similar to returning to ribbon directly.
 }
 show(moony_2(circle, 5));
 */
 //next qn
-function moony_2(rune, n){
+function moony(rune, n){
     return n === 1
            ? rune
            : beside_frac(1 / n, 
                          stack_frac(1 / n, rune, square), 
-                         stack_frac(1 / n, blank, moony_2(rune, n - 1)));
+                         stack_frac(1 / n, blank, moony(rune, n - 1)));
 }
-show(moony_2(circle, 5));
+show(moony(circle, 5));
 
 //next qn
+//it consists of recursive process.
+//recursion uses more space than iteration, 
+//recursion and iteration usually have the same time complexity.
+//big-O(n) upperbound, big-theta(n) (above upper, below lower), big-Omega(n) lower bound
+//time and space for moony2, moony3, moony, theta(n), O(n), O(n^2), omega(n), omega(1)
