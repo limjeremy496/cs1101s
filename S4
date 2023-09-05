@@ -1,10 +1,40 @@
+//q1
+
  function pascal(row, position) {
-     return row === 0 || position === 0
+     return (position === row || position === 0)
             ? 1
-            : position === row + 1 || position === row
+            // : position === row + 1 || position === row
+            // ? 1
+            : pascal(row - 1, position -1 ) + pascal(row - 1, position);
+ }
+ 
+ // test 
+ pascal(4, 2) ;
+ 
+/* //q1
+
+ function pascal(row, position) {
+     return position > row
+            ? 0
+            : position === 0
             ? 1
             : pascal(row - 1, position -1 ) + pascal(row - 1, position) ;
  }
  
  // test 
  pascal(4, 2) ;
+ 
+ */
+ 
+ //q2
+ 
+ /*pascal(4,3) --> pascal(3,3)
+ 
+ pascal(3,2) --> pascal(2,2)
+ 
+ pascal(2,1) --> pascal(1,1)
+ 
+ pascal(1,0)*/
+ 
+ 
+ 
