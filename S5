@@ -1,0 +1,31 @@
+// //q1
+// function every_second(items) {
+//     return is_null(items)
+//           ? null
+//           : is_null(tail(items))
+//           ? null
+//           : pair(head(tail(items)), every_second(tail(tail(items))));
+// }
+
+// every_second(list("a","x", "b", "y", "c", "z", "d", "g"));
+
+//list_ref(xs, n), length
+//q2
+
+function sum_iter(xs, even, odd, items){
+    return is_null(items)
+           ? xs
+           : is_null(tail(items))
+           ? xs
+           : sum_iter(list(even, odd), head(tail(items)) + 
+                      even, head(items) + odd, tail(tail(items)));
+
+}
+
+function sum(items){
+    sum_iter(list(), 0, 0, items);
+           //list(head(tail(items)) + sum(tail(tail(items))), (head(items)) + sum(tail(tail(items))));
+}
+
+
+sum(list(1, 2, 3, 4, 5));
