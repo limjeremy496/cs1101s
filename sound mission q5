@@ -40,7 +40,7 @@ const O_sound = consecutively(list(dash_sound, dot_pause, dash_sound, dot_pause,
                                     dash_sound));
 
 // Build the signal out of letter sounds and pauses.
-const distress_signal = consecutively(list(S_sound, dash_pause, O_sound));
+// const distress_signal = consecutively(list(S_sound, dash_pause, O_sound));
 
-// Play distress signal.
-play(distress_signal);
+// // Play distress signal.
+// play(distress_signal);
