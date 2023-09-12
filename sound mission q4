@@ -1,35 +1,35 @@
-// // Task 4
-// import {make_sound, get_wave, get_duration, play} from "sound";
-// // Copy your own sine_sound function from the previous question here.
-// function sine_sound(freq, duration) {
-//     /* your answer here */
-//      return make_sound(t => math_sin(2 * math_PI * freq * t), duration);
-// }
-// // Copy your own two_consecutively function from the previous question here.
-// function two_consecutively(s1, s2) {
-//     /* your answer here */
-//     const w1 = get_wave(s1);
-//     const w2 = get_wave(s2);
-//     const d1 = get_duration(s1);
-//     const d2 = get_duration(s2);
-//     const w_merged = t => t <= d1 ? w1(t) : w2(t);
-//     return make_sound(w_merged, d1 + d2);
-// }
+// Task 4
+import {make_sound, get_wave, get_duration, play, silence_sound} from "sound";
+// Copy your own sine_sound function from the previous question here.
+function sine_sound(freq, duration) {
+    /* your answer here */
+     return make_sound(t => math_sin(2 * math_PI * freq * t), duration);
+}
+// Copy your own two_consecutively function from the previous question here.
+function two_consecutively(s1, s2) {
+    /* your answer here */
+    const w1 = get_wave(s1);
+    const w2 = get_wave(s2);
+    const d1 = get_duration(s1);
+    const d2 = get_duration(s2);
+    const w_merged = t => t <= d1 ? w1(t) : w2(t);
+    return make_sound(w_merged, d1 + d2);
+}
 
-// function consecutively(list_of_sounds) {
-//     /* your answer here */
-    
+function consecutively(list_of_sounds) {
+    /* your answer here */
+    return accumulate(two_consecutively, silence_sound(0), list_of_sounds);
 //     return two_consecutively(two_consecutively(list_ref(list_of_sounds, 0), 
 //                                               list_ref(list_of_sounds, 1)), 
 //                                               list_ref(list_of_sounds, 2));
-// }
+}
 
-// const my_sine_1 = sine_sound(500, 0.5);
-// const my_sine_2 = sine_sound(750, 1);
-// const my_sine_3 = sine_sound(625, 0.5);
+const my_sine_1 = sine_sound(500, 0.5);
+const my_sine_2 = sine_sound(750, 1);
+const my_sine_3 = sine_sound(625, 0.5);
 
-// // Play test sound.
-// play(consecutively(list(my_sine_1, my_sine_2, my_sine_3)));
+// Play test sound.
+play(consecutively(list(my_sine_1, my_sine_2, my_sine_3)));
 
-const xs = list(1, 2, 3);
-display(list_ref(xs, 2));
+// const xs = list(1, 2, 3);
+// display(list_ref(xs, 2));
