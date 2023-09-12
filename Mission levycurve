@@ -1,0 +1,21 @@
+// Question was left blank by the student.
+
+function levycize(curve) {
+    const f = math_sqrt(2) / 2;
+    const scaled_curve = (scale(f, f, 1))(curve);
+    return connect_rigidly(
+        (rotate_around_origin(0, 0, math_PI / 4))(scaled_curve),
+        (translate(0.5, 0.5, 0))
+            ((rotate_around_origin(0, 0, -math_PI / 4))(scaled_curve)));
+}
+
+function fractal(n, ct, c){
+     return n < 1
+            ? c
+            : fractal(n - 1, ct, c);
+}
+
+draw_connected_full_view_proportional(10000)
+    (levycize(levycize(unit_line)));//
+draw_connected_full_view_proportional(10000)
+    (fractal(5, levycize, unit_line));    
