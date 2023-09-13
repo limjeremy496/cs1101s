@@ -14,7 +14,7 @@ function two_consecutively(s1, s2) {
     const w2 = get_wave(s2);
     const d1 = get_duration(s1);
     const d2 = get_duration(s2);
-    const w_merged = t => t <= d1 ? w1(t) : w2(t);
+    const w_merged = t => t < d1 ? w1(t) : w2(t - d1);
     return make_sound(w_merged, d1 + d2);
 }
 // Copy your own consecutively function from the previous question here.
@@ -40,7 +40,7 @@ const O_sound = consecutively(list(dash_sound, dot_pause, dash_sound, dot_pause,
                                     dash_sound));
 
 // Build the signal out of letter sounds and pauses.
-// const distress_signal = consecutively(list(S_sound, dash_pause, O_sound));
+const distress_signal = consecutively(list(S_sound, dash_pause, O_sound));
 
 // // Play distress signal.
-// play(distress_signal);
+play(distress_signal);
