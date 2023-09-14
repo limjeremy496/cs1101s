@@ -15,3 +15,24 @@ flatten_list(LoL);
 
 //q2
 
+//is_pair || is_null 
+//can replace is_list
+
+function tree_sum(tree){
+    return is_null(tree)
+        ? 0
+        : (is_list(head(tree))
+            ? tree_sum(head(tree))
+            : head(tree)) //1
+            +
+            tree_sum(tail(tree)) //2
+        ;
+}
+
+
+const my_tree = list(1, list(2, list(3, 4), 5), list(6, 7));
+tree_sum(my_tree);
+// Returns 28
+
+
+//q3
