@@ -1,0 +1,6 @@
+function my_map(f, xs) {
+// this should be a one-liner
+}
+Example calls:
+my_map(x => x + 1, list(1, 2, 3));
+// Result: list(2, 3, 4)
