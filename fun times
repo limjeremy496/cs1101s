@@ -1,0 +1,39 @@
+/*function partition(f,ls){
+     return pair(filter(f, ls), filter((y => !f(y)), ls));
+    
+}
+
+function part(f, ls){
+    function part_helper(f, ls){
+        return is_null(ls)
+            ? null
+            : f(head(ls))
+            ? pair(head(ls), part_helper(f, tail(ls)))
+            : part_helper(f, tail(ls));
+    }
+    return pair(part_helper(f, ls), part_helper(y => !f(y), ls));
+}
+
+part(x => x % 2 === 0, enum_list(1, 10));*/
+
+/*function subsets(ls){
+    return is_null(ls) 
+        ? null
+        : list(pair(head(ls), subsets(tail(ls))), subsets(tail(ls)));
+}
+
+subsets(list(1,2)); 
+*/
+//subsets(list(1,2)) -> list([], list(1), list(2), list(1,2));
+
+function subsets(xs) {
+    if (is_null(xs)) {
+        return list(list());
+    } else {
+        const wish = subsets(tail(xs));
+        const x = head(xs);
+        const x1 = map(y =>pair(x, y), wish);
+    return append(wish, x1);
+    }
+}
+display_list(subsets(list(1,2, 3)));
