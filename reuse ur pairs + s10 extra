@@ -44,6 +44,7 @@ const my_list1 = list(2, 4, 5, 9);
 const my_list2 = list(3, 5, 8);
 d_merge(my_list1, my_list2);
 
+// Question was left blank by the student.
 function d_split_list(xs) {
 
     // *** Your answer here. ***
@@ -63,3 +64,18 @@ function d_split_list(xs) {
     return pair(xs, right_list);
     
 }
+
+function d_merge_sort(xs){
+    if(is_null(xs) || is_null(tail(xs))){
+        return xs;
+    }
+    else{
+    const split = d_split_list(xs);
+    
+    return d_merge(d_merge_sort(head(split)), d_merge_sort(tail(split)));
+    }
+}
+
+
+
+d_merge_sort(list(7,2,4,6,9,1,5,8,3,6));
