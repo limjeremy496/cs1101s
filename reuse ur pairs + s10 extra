@@ -43,3 +43,23 @@ function d_merge(xs, ys) {
 const my_list1 = list(2, 4, 5, 9);
 const my_list2 = list(3, 5, 8);
 d_merge(my_list1, my_list2);
+
+function d_split_list(xs) {
+
+    // *** Your answer here. ***
+    // const left_list = null;
+    let right_list = null;
+    const ln = math_ceil(length(xs) / 2);
+    let i = 0;
+    let curr = xs;
+
+    while(i < ln - 1){
+        curr = tail(curr);
+        i = i + 1;
+    }
+
+    right_list = tail(curr);
+    set_tail(curr, null);
+    return pair(xs, right_list);
+    
+}
