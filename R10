@@ -1,0 +1,51 @@
+function zip_stream(s1, s2){
+    return pair(head(s1), () => zip_stream(s2, stream_tail(s1)));
+}
+
+function zip_list_of_streams(streams){
+    return pair(head(streams), 
+            () => zip_list_of_streams(append(tail(streams), stream_tail(head(streams)))));
+}
+
+zip_list_of_streams()
+
+function partial_sums(s){
+    function ps(s, prev){
+        return pair(head(s) + prev, () => ps(stream_tail(s), head(s) + prev));
+    }
+    return ps(s, 0);
+} //easy mode
+
+function ps(s){
+    return pair(head(s), () => add_streams(ps(s), stream_tail(s)));
+}
+
+function memo_fun(f){
+    let result = undefined;
+    return () => {
+        if(result === undefined){
+            result = f();
+            
+        }
+        return result;
+    };
+}
+
+function stream_map_optimized(f, s) {
+    return is_null(s)
+        ? null
+        : pair(f(head(s)),
+        memo_fun( () => stream_map_optimized(
+        f, stream_tail(s)) ));
+}
+
+const y = stream_map_optimized(display, enum_stream(0 ,10));
+/*
+const x = stream_map(display, enum_stream(0, 10));
+stream_ref(x, 3);
+stream_ref(x, 5);*/
+ 
+/*stream_ref(y, 3);
+stream_ref(y, 5);*/
+
+
