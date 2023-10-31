@@ -1,0 +1,92 @@
+// TASK 4
+
+import { alpha_of, blue_of, compose_filter, copy_image, get_video_time,
+    green_of, image_height, image_width, install_filter, keep_aspect_ratio,
+    pause_at, red_of, reset_filter, set_dimensions, set_fps, set_loop_count,
+    set_rgba, set_volume, start, use_image_url, use_local_file, use_video_url
+} from "pix_n_flix";
+
+const FPS = 10;
+
+// Your array_to_stream function from TASK 1 goes here.
+function array_to_stream(a) {
+    // your solution goes here
+    function helper(a, i){
+        return a[i] === undefined
+            ? null
+            : pair(a[i], () => helper(a, i + 1));
+    } return helper(a, 0);
+
+}
+
+function stream_to_filter(s) {
+    // your solution goes here
+    return (src, dest) => {
+        if(stream_tail(s) !== null){
+            for (let i = 0; i < HEIGHT; i = i + 1) {
+                for (let j = 0; j < WIDTH; j = j + 1) {
+                    dest[i][j] = head(s)[i][j];
+                }
+            }
+        s = stream_tail(s);
+        }
+    };
+}
+// function loop(s1) {
+//     // your solution goes here
+//     function help(s2){
+        
+//         return pair(head(s2), () => {
+//             if(stream_tail(s2) !== null){
+//                 return help(stream_tail(s2));
+//             }
+//             else{
+//                 return help(s1);
+//             }
+//         }
+//         );
+//     }
+//     return help(s1);
+// }
+
+
+function loop(s){
+    function looper(s1){
+        return is_null(s1)
+            ? looper(s)
+            : pair(head(s1), () => looper(stream_tail(s1)));
+    }
+    return looper(s);
+}
+
+function time_lapse(s, n) {
+    // your solution goes here
+    let c = 0;
+    function helper(c, s){
+        if(s === null){
+            return null;
+        }
+        else if(c % n === 0){
+            return pair(head(s), () => helper(c + 1, stream_tail(s)));
+        }
+        else{
+            return helper(c + 1, stream_tail(s));
+        }
+    }
+    return helper(c, s);
+}
+
+
+install_filter(
+    stream_to_filter(
+        time_lapse(loop(array_to_stream(anomaly_data)),
+                   3)));
+
+set_dimensions(WIDTH, HEIGHT);
+keep_aspect_ratio(true);
+set_fps(FPS);
+start();
+
+
+
+
