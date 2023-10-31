@@ -19,18 +19,31 @@ function array_to_stream(a) {
 
 }
 
+// function stream_to_filter(s) {
+//     // your solution goes here
+//     return (src, dest) => {
+//         if(stream_tail(s) !== null){
+//             for (let i = 0; i < HEIGHT; i = i + 1) {
+//                 for (let j = 0; j < WIDTH; j = j + 1) {
+//                     dest[i][j] = head(s)[i][j];
+//                 }
+//             }
+//         s = stream_tail(s);
+//         }
+//     };
+// }
 function stream_to_filter(s) {
     // your solution goes here
-    return (src, dest) => {
-        if(stream_tail(s) !== null){
-            for (let i = 0; i < HEIGHT; i = i + 1) {
-                for (let j = 0; j < WIDTH; j = j + 1) {
-                    dest[i][j] = head(s)[i][j];
-                }
-            }
-        s = stream_tail(s);
+    function filter(src, dest) {
+        if (stream_tail(s) === null) {
+            copy_image(head(s), dest);
+        } else {
+            copy_image(head(s), dest);
+            s = stream_tail(s);
+            stream_to_filter(s); //redundant
         }
-    };
+    }
+    return filter;
 }
 // function loop(s1) {
 //     // your solution goes here
